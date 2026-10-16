@@ -1160,6 +1160,67 @@ mark.ali-filter-mark {
   gap: 8px;
 }
 
+.ali-deals-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2px;
+  padding: 0 2px;
+}
+
+.ali-deals-sync-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9.5px;
+  color: var(--af-text-tertiary);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid var(--af-border-subtle);
+}
+
+.ali-deals-sync-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 6px rgba(52, 211, 153, 0.6);
+}
+
+.ali-deals-refresh-btn {
+  background: transparent;
+  border: none;
+  color: var(--af-text-tertiary);
+  cursor: pointer;
+  padding: 3px 6px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: inherit;
+  font-size: 10px;
+  transition: var(--af-transition);
+}
+
+.ali-deals-refresh-btn svg {
+  width: 12px;
+  height: 12px;
+}
+
+.ali-deals-refresh-btn:hover {
+  color: var(--af-text-primary);
+  background: var(--af-bg-hover);
+}
+
+.ali-deals-refresh-btn.rotating svg {
+  animation: ali-spin 0.75s linear infinite;
+}
+
+@keyframes ali-spin {
+  100% { transform: rotate(360deg); }
+}
+
 .ali-coupons-list {
   display: flex;
   flex-direction: column;

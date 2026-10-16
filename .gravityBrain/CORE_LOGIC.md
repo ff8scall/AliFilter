@@ -26,3 +26,17 @@
    - 모드 2: **반투명 흐리게 (`opacity: 0.15; filter: grayscale(80%)`)** - 완전히 사라지는 게 불안할 때 누락 상품을 흐리게만 처리
 3. **무한 스크롤 방어 (`MutationObserver`)**:
    - 카드가 동적으로 추가될 때마다 디바운스(Debounce: 100ms)를 적용하여 성능 저하 없이 신규 카드만 선별 처리
+
+## 4. 프로모션 & 핫딜 원격 동기화 엔진 (Remote Promotions Sync Engine)
+1. **무중단 원격 배포 (Zero-Rebuild Deployment)**:
+   - 구글 웹스토어 재심사(1~3일) 없이, GitHub 저장소의 `promotions.json`을 수정하는 즉시 전 세계 모든 사용자에게 최신 할인코드 및 핫딜 반영.
+2. **다계층 캐시 & Fallback 구조**:
+   - 1계층: `window.__ALI_PROMOTIONS__` 동기 전역 변수 (초기 렌더링 지연 제로)
+   - 2계층: `chrome.storage.local` 비동기 영구 캐시 (TTL 6시간 유효성 검사)
+   - 3계층: `fetch('https://raw.githubusercontent.com/.../promotions.json?_t=timestamp')` 원격 실시간 갱신 (CDN 캐시 버스팅)
+   - 안전망: 네트워크 실패, 깃헙 장애, 오프라인 시 내장 `FALLBACK_PROMOTIONS`로 100% Graceful Fallback
+3. **반응형 이벤트 구독 (`subscribe`)**:
+   - 백그라운드 페치 완료 시 등록된 UI 뷰에 자동 알림 통지 및 실시간 리렌더링
+4. **보안 & 신뢰성**:
+   - 정적 JSON 규격 스키마 검증 (`coupons`, `hotdeals` 유효성) 통과 시에만 스토리지 반영
+   - XSS 차단을 위한 DOM 텍스트 안전 삽입 원칙 준수

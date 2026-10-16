@@ -1,97 +1,206 @@
 /**
- * AliFilter - AliExpress Promotions & Hot Deals Data
- * 사용자 맞춤형 알리 제휴(Portals) 프로모션 코드 및 추천 핫딜 데이터
+ * AliFilter - AliExpress Promotions & Hot Deals Data Engine
  * 
- * [수정 안내]
- * - 새 쿠폰이나 핫딜을 추가/수정하려면 아래 객체의 내용을 변경하시면 됩니다.
- * - 본인의 제휴 링크(Tracking Link)는 알리 포털(portals.aliexpress.com) > Tools > Link Generator에서
- *   상품 URL을 변환하여 'link' 항목에 입력하시면 됩니다.
+ * [원격 자동 동기화 & 로컬 캐시 아키텍처]
+ * - GitHub 저장소(raw.githubusercontent.com)의 promotions.json을 원격에서 주기적(6시간)으로 페치
+ * - chrome.storage.local에 캐싱하여 네트워크 지연 없이 즉시 로드
+ * - 오프라인이거나 네트워크 오류 시 아래 내장 기본값(FALLBACK_PROMOTIONS)으로 100% 안전 Fallback
+ * - GitHub에서 JSON 수정 시 브라우저 재배포/구글 웹스토어 심사 없이 모든 사용자에게 실시간 반영
  */
 
-window.__ALI_PROMOTIONS__ = {
-  // 제휴 기본 정보
-  meta: {
-    trackingId: 'alifilter',
-    updatedAt: '2026-10',
-    titleKo: '10월 알리 특별 프로모션 & 검증 핫딜',
-    titleEn: 'AliExpress Monthly Deals & Promo Codes'
-  },
+(function () {
+  'use strict';
 
-  // 1. 알리익스프레스 공식 프로모션 코드 모음
-  coupons: [
-    {
-      id: 'coupon_1',
-      titleKo: '$29 이상 구매 시 $3 즉시 할인',
-      titleEn: '$3 OFF on orders over $29',
-      code: 'ALIFILTER03',
-      badge: '선착순',
-      badgeEn: 'Limited',
-      descKo: '모든 알리익스프레스 직구 상품 적용 가능',
-      descEn: 'Applicable to global items'
+  // 1. 내장 기본 데이터 (네트워크 실패/오프라인 시 사용되는 안전망)
+  const FALLBACK_PROMOTIONS = {
+    meta: {
+      trackingId: 'alifilter',
+      updatedAt: '2026-10',
+      titleKo: '10월 알리 특별 프로모션 & 검증 핫딜',
+      titleEn: 'AliExpress Monthly Deals & Promo Codes'
     },
-    {
-      id: 'coupon_2',
-      titleKo: '$69 이상 구매 시 $8 즉시 할인',
-      titleEn: '$8 OFF on orders over $69',
-      code: 'ALIFILTER08',
-      badge: '인기',
-      badgeEn: 'Popular',
-      descKo: '가전/디지털/캠핑 카테고리 강력 추천',
-      descEn: 'Great for Electronics & Outdoor'
-    },
-    {
-      id: 'coupon_3',
-      titleKo: '$139 이상 구매 시 $18 즉시 할인',
-      titleEn: '$18 OFF on orders over $139',
-      code: 'ALIFILTER18',
-      badge: '슈퍼세일',
-      badgeEn: 'Super Deal',
-      descKo: '장바구니 결제 단계에서 코드 입력',
-      descEn: 'Enter promo code at checkout'
-    }
-  ],
+    coupons: [
+      {
+        id: 'coupon_1',
+        titleKo: '$29 이상 구매 시 $3 즉시 할인',
+        titleEn: '$3 OFF on orders over $29',
+        code: 'ALIFILTER03',
+        badge: '선착순',
+        badgeEn: 'Limited',
+        descKo: '모든 알리익스프레스 직구 상품 적용 가능',
+        descEn: 'Applicable to global items'
+      },
+      {
+        id: 'coupon_2',
+        titleKo: '$69 이상 구매 시 $8 즉시 할인',
+        titleEn: '$8 OFF on orders over $69',
+        code: 'ALIFILTER08',
+        badge: '인기',
+        badgeEn: 'Popular',
+        descKo: '가전/디지털/캠핑 카테고리 강력 추천',
+        descEn: 'Great for Electronics & Outdoor'
+      },
+      {
+        id: 'coupon_3',
+        titleKo: '$139 이상 구매 시 $18 즉시 할인',
+        titleEn: '$18 OFF on orders over $139',
+        code: 'ALIFILTER18',
+        badge: '슈퍼세일',
+        badgeEn: 'Super Deal',
+        descKo: '장바구니 결제 단계에서 코드 입력',
+        descEn: 'Enter promo code at checkout'
+      }
+    ],
+    hotdeals: [
+      {
+        id: 'deal_1',
+        titleKo: 'Baseus 65W GaN5 Pro 초고속 멀티 충전기',
+        titleEn: 'Baseus 65W GaN5 Pro Fast Charger',
+        tagKo: '★ 4.9 베스트셀러',
+        tagEn: '★ 4.9 Best Seller',
+        originalPrice: '₩38,000',
+        salePrice: '₩19,200',
+        discount: '49% OFF',
+        rating: '4.9',
+        orders: '24,000+',
+        link: 'https://s.click.aliexpress.com/e/_c3OgBvzx'
+      },
+      {
+        id: 'deal_2',
+        titleKo: 'UGREEN 블루투스 5.4 마우스 무소음 슬림',
+        titleEn: 'UGREEN Wireless Bluetooth 5.4 Silent Mouse',
+        tagKo: '사무용 가성비 1위',
+        tagEn: 'Top Office Value',
+        originalPrice: '₩22,000',
+        salePrice: '₩11,400',
+        discount: '48% OFF',
+        rating: '4.8',
+        orders: '18,500+',
+        link: 'https://s.click.aliexpress.com/e/_c3OgBvzx'
+      },
+      {
+        id: 'deal_3',
+        titleKo: 'Anker Soundcore P20i 무선 노이즈캔슬링 이어폰',
+        titleEn: 'Anker Soundcore P20i True Wireless Earbuds',
+        tagKo: '음질 종결 가성비',
+        tagEn: 'High Fidelity Sound',
+        originalPrice: '₩35,000',
+        salePrice: '₩18,900',
+        discount: '46% OFF',
+        rating: '4.9',
+        orders: '35,000+',
+        link: 'https://s.click.aliexpress.com/e/_c3OgBvzx'
+      }
+    ]
+  };
 
-  // 2. AliFilter 검증 5성급 추천 핫딜 (평점 4.8 이상, 대량 판매 검증 제품)
-  hotdeals: [
-    {
-      id: 'deal_1',
-      titleKo: 'Baseus 65W GaN5 Pro 초고속 멀티 충전기',
-      titleEn: 'Baseus 65W GaN5 Pro Fast Charger',
-      tagKo: '★ 4.9 베스트셀러',
-      tagEn: '★ 4.9 Best Seller',
-      originalPrice: '₩38,000',
-      salePrice: '₩19,200',
-      discount: '49% OFF',
-      rating: '4.9',
-      orders: '24,000+',
-      // 사용자 발급 제휴 딥링크 (AliExpress Portals 연동)
-      link: 'https://s.click.aliexpress.com/e/_c3OgBvzx'
-    },
-    {
-      id: 'deal_2',
-      titleKo: 'UGREEN 블루투스 5.4 마우스 무소음 슬림',
-      titleEn: 'UGREEN Wireless Bluetooth 5.4 Silent Mouse',
-      tagKo: '사무용 가성비 1위',
-      tagEn: 'Top Office Value',
-      originalPrice: '₩22,000',
-      salePrice: '₩11,400',
-      discount: '48% OFF',
-      rating: '4.8',
-      orders: '18,500+',
-      link: 'https://s.click.aliexpress.com/e/_c3OgBvzx'
-    },
-    {
-      id: 'deal_3',
-      titleKo: 'Anker Soundcore P20i 무선 노이즈캔슬링 이어폰',
-      titleEn: 'Anker Soundcore P20i True Wireless Earbuds',
-      tagKo: '음질 종결 가성비',
-      tagEn: 'High Fidelity Sound',
-      originalPrice: '₩35,000',
-      salePrice: '₩18,900',
-      discount: '46% OFF',
-      rating: '4.9',
-      orders: '35,000+',
-      link: 'https://s.click.aliexpress.com/e/_c3OgBvzx'
+  // 즉시 전역 데이터 초기화 (동기 렌더링 지원)
+  window.__ALI_PROMOTIONS__ = JSON.parse(JSON.stringify(FALLBACK_PROMOTIONS));
+
+  // 2. 원격 동기화 관리자 모듈
+  const RAW_URL = 'https://raw.githubusercontent.com/ff8scall/AliFilter/main/promotions.json';
+  const CACHE_KEY = 'alifilter_remote_promotions';
+  const CACHE_TIME_KEY = 'alifilter_remote_promotions_time';
+  const CACHE_TTL_MS = 6 * 60 * 60 * 1000; // 6시간 TTL
+
+  const subscribers = new Set();
+
+  function isValidPromotions(data) {
+    return (
+      data &&
+      typeof data === 'object' &&
+      Array.isArray(data.coupons) &&
+      Array.isArray(data.hotdeals) &&
+      data.coupons.length > 0
+    );
+  }
+
+  function notifySubscribers(data) {
+    subscribers.forEach(cb => {
+      try {
+        cb(data);
+      } catch (err) {
+        console.warn('[AliFilter] Subscriber error:', err);
+      }
+    });
+  }
+
+  async function fetchRemotePromotions() {
+    try {
+      // 캐시 버스팅 파라미터 적용 (GitHub CDN 캐시 즉시 우회)
+      const fetchUrl = `${RAW_URL}?_t=${Date.now()}`;
+      const response = await fetch(fetchUrl, {
+        method: 'GET',
+        cache: 'no-cache'
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP status ${response.status}`);
+      }
+
+      const remoteData = await response.json();
+      if (!isValidPromotions(remoteData)) {
+        throw new Error('Invalid promotions JSON schema');
+      }
+
+      // 로컬 스토리지에 캐싱
+      if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+        chrome.storage.local.set({
+          [CACHE_KEY]: remoteData,
+          [CACHE_TIME_KEY]: Date.now()
+        });
+      }
+
+      window.__ALI_PROMOTIONS__ = remoteData;
+      notifySubscribers(remoteData);
+      return remoteData;
+    } catch (err) {
+      console.warn('[AliFilter] Remote promotions sync skipped, using local fallback:', err.message);
+      return null;
     }
-  ]
-};
+  }
+
+  async function init() {
+    // 1단계: 로컬 캐시 확인
+    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+      try {
+        const stored = await chrome.storage.local.get([CACHE_KEY, CACHE_TIME_KEY]);
+        const cachedData = stored[CACHE_KEY];
+        const cachedTime = stored[CACHE_TIME_KEY] || 0;
+        const isFresh = Date.now() - cachedTime < CACHE_TTL_MS;
+
+        if (isValidPromotions(cachedData)) {
+          window.__ALI_PROMOTIONS__ = cachedData;
+          notifySubscribers(cachedData);
+        }
+
+        // 캐시가 없거나 만료되었으면 백그라운드 원격 동기화
+        if (!isFresh || !isValidPromotions(cachedData)) {
+          fetchRemotePromotions();
+        }
+      } catch (e) {
+        fetchRemotePromotions();
+      }
+    } else {
+      // Chrome storage가 없는 테스트 환경인 경우
+      fetchRemotePromotions();
+    }
+  }
+
+  window.AliPromotionsManager = {
+    init: init,
+    syncNow: fetchRemotePromotions,
+    subscribe: function (callback) {
+      if (typeof callback === 'function') {
+        subscribers.add(callback);
+      }
+      return () => subscribers.delete(callback);
+    },
+    getData: function () {
+      return window.__ALI_PROMOTIONS__ || FALLBACK_PROMOTIONS;
+    }
+  };
+
+  // 백그라운드 초기화 자동 실행
+  init();
+})();

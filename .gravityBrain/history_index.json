@@ -86,5 +86,13 @@
     "title": "GitHub 원격 저장소 초기화, .gitignore 생성 및 첫 커밋/푸시 완료",
     "tags": ["git", "github", "repository-setup", "initial-commit", "push"],
     "logFile": ".gravityBrain/history/2026-10-16_GitHub_Repository_Setup.md"
+  },
+  {
+    "id": "2026-10-16_03",
+    "date": "2026-10-16",
+    "taskName": "Remote_Promotions_Sync",
+    "title": "원격 프로모션 JSON 동기화 & 실시간 갱신 시스템 구축 (6시간 캐시 + Fallback + UI 수동 새로고침)",
+    "tags": ["promotions-sync", "remote-json", "cache-ttl", "zero-downtime", "fallback", "verified"],
+    "logFile": ".gravityBrain/history/2026-10-16_Remote_Promotions_Sync.md"
   }
 ]

@@ -11,21 +11,27 @@ graph TD
     User["사용자 (AliExpress 접속)"] --> WebPage["aliexpress.com/w/wholesale-*.html"]
     WebPage --> ContentScript["content.js (DOM 감시 및 UI 조작)"]
     
+    subgraph RemoteServer ["GitHub 원격 저장소 (무중단 실시간 배포)"]
+        RemoteJSON["promotions.json (최신 쿠폰 & 핫딜 데이터)"]
+    end
+
     subgraph ChromeExtension ["크롬 확장 프로그램 (Manifest V3)"]
-        Manifest["manifest.json"]
+        Manifest["manifest.json (host_permissions 포함)"]
         Popup["popup.html / popup.js (글로벌 옵션 설정)"]
-        Promotions["promotions.js (이달의 쿠폰 & 제휴 핫딜 데이터)"]
+        Promotions["promotions.js (원격 페치 + 6시간 캐시 + Fallback 엔진)"]
         ContentScript
-        Storage["chrome.storage.local (설정 및 언어/위치 저장)"]
+        Storage["chrome.storage.local (설정, 언어, 위치, 프로모션 캐시)"]
     end
     
+    RemoteJSON -->|주기적 fetch & 캐시| Promotions
     Promotions --> ContentScript
     ContentScript --> FloatingPanel["플로팅 패널 (Linear/Raycast 다크 글래스모피즘)"]
     FloatingPanel --> TabFilters["[🔍 정밀 필터] 필수/제외 키워드, 신뢰도, 가격 필터"]
-    FloatingPanel --> TabDeals["[🎁 혜택 & 핫딜] 프로모코드 원클릭 복사 & 5성급 핫딜 제휴링크"]
+    FloatingPanel --> TabDeals["[🎁 혜택 & 핫딜] 실시간 쿠폰 복사, 5성급 핫딜, 수동 새로고침"]
     
     ContentScript --> Storage
     Popup --> Storage
+    Promotions --> Storage
     
     Observer["MutationObserver"] --> ContentScript
 ```

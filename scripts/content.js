@@ -111,7 +111,11 @@
       hotdealsSecTitle: 'AliFilter 검증 5성급 핫딜',
       hotdealsSecHint: '평점 4.8+ 가성비 검증',
       viewDealBtn: '특가 보러가기',
-      affiliateNotice: '안내: 제휴 링크 경유 시 구매 금액에 따라 AliFilter 개발자에게 소정의 커미션이 지급될 수 있습니다.'
+      affiliateNotice: '안내: 제휴 링크 경유 시 구매 금액에 따라 AliFilter 개발자에게 소정의 커미션이 지급될 수 있습니다.',
+      dealsSyncing: '최신 혜택 동기화 중...',
+      dealsSynced: '최신 혜택 갱신 완료!',
+      dealsUpdated: '업데이트:',
+      refreshDealsBtn: '새로고침'
     },
     en: {
       mustKw: 'Must Keywords',
@@ -183,7 +187,11 @@
       hotdealsSecTitle: 'Verified 5-Star Hot Deals',
       hotdealsSecHint: 'Rating 4.8+ Top Value',
       viewDealBtn: 'View Deal',
-      affiliateNotice: 'Notice: Purchasing via affiliate links supports AliFilter development at no extra cost.'
+      affiliateNotice: 'Notice: Purchasing via affiliate links supports AliFilter development at no extra cost.',
+      dealsSyncing: 'Syncing latest deals...',
+      dealsSynced: 'Latest deals updated!',
+      dealsUpdated: 'Updated:',
+      refreshDealsBtn: 'Refresh'
     }
   };
 
@@ -1074,8 +1082,23 @@
         <!-- 2. Deals & Coupons Tab View -->
         <div class="ali-tab-view ${currentTab === 'deals' ? '' : 'ali-tab-hidden'}" id="aliViewDeals">
           <div class="ali-panel-body">
+            <!-- Header Meta (Sync Status & Refresh) -->
+            <div class="ali-deals-header-row">
+              <span class="ali-deals-sync-badge">
+                <span class="ali-deals-sync-dot"></span>
+                <span id="aliDealsUpdatedText">${t('dealsUpdated')} ${window.__ALI_PROMOTIONS__?.meta?.updatedAt || '2026-10'}</span>
+              </span>
+              <button type="button" class="ali-deals-refresh-btn" id="aliDealsRefreshBtn" title="${t('refreshDealsBtn')}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="23 4 23 10 17 10"></polyline>
+                  <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                </svg>
+                <span>${t('refreshDealsBtn')}</span>
+              </button>
+            </div>
+
             <!-- Promo Coupons -->
-            <div class="ali-deals-sec">
+            <div class="ali-deals-sec" style="margin-top: 6px;">
               <div class="ali-sec-header">
                 <span class="ali-sec-title" id="aliCouponsSecTitle">${t('couponsSecTitle')}</span>
                 <span class="ali-sec-info" id="aliCouponsSecHint">${t('couponsSecHint')}</span>
@@ -1322,16 +1345,22 @@
     if (!widget) widget = document.getElementById('ali-filter-widget');
     if (!widget) return;
 
-    const data = window.__ALI_PROMOTIONS__;
+    const data = (window.AliPromotionsManager && window.AliPromotionsManager.getData()) || window.__ALI_PROMOTIONS__;
     if (!data) return;
+
+    // Update Status Badge
+    const updatedEl = widget.querySelector('#aliDealsUpdatedText');
+    if (updatedEl && data.meta && data.meta.updatedAt) {
+      updatedEl.textContent = `${t('dealsUpdated')} ${data.meta.updatedAt}`;
+    }
 
     // Coupons
     const couponsContainer = widget.querySelector('#aliCouponsList');
     if (couponsContainer && Array.isArray(data.coupons)) {
       couponsContainer.innerHTML = data.coupons.map(c => {
-        const title = currentLang === 'ko' ? c.titleKo : c.titleEn;
-        const desc = currentLang === 'ko' ? c.descKo : c.descEn;
-        const badge = currentLang === 'ko' ? c.badge : c.badgeEn;
+        const title = currentLang === 'ko' ? (c.titleKo || c.title) : (c.titleEn || c.title);
+        const desc = currentLang === 'ko' ? (c.descKo || c.desc) : (c.descEn || c.desc);
+        const badge = currentLang === 'ko' ? (c.badge || c.badgeKo) : (c.badgeEn || c.badge);
         return `
           <div class="ali-coupon-card" data-code="${c.code}">
             <div class="ali-coupon-top">
@@ -1368,8 +1397,8 @@
     const hotdealsContainer = widget.querySelector('#aliHotdealsList');
     if (hotdealsContainer && Array.isArray(data.hotdeals)) {
       hotdealsContainer.innerHTML = data.hotdeals.map(d => {
-        const title = currentLang === 'ko' ? d.titleKo : d.titleEn;
-        const tag = currentLang === 'ko' ? d.tagKo : d.tagEn;
+        const title = currentLang === 'ko' ? (d.titleKo || d.title) : (d.titleEn || d.title);
+        const tag = currentLang === 'ko' ? (d.tagKo || d.tag) : (d.tagEn || d.tag);
         return `
           <div class="ali-deal-card">
             <div class="ali-deal-meta">
@@ -1444,6 +1473,35 @@
 
     // Initial render of promotions
     renderPromotionsView(widget);
+
+    // Manual Refresh Deals Button
+    const refreshDealsBtn = widget.querySelector('#aliDealsRefreshBtn');
+    if (refreshDealsBtn) {
+      refreshDealsBtn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        refreshDealsBtn.classList.add('rotating');
+        showToast(t('dealsSyncing'));
+        if (window.AliPromotionsManager && window.AliPromotionsManager.syncNow) {
+          const fresh = await window.AliPromotionsManager.syncNow();
+          refreshDealsBtn.classList.remove('rotating');
+          if (fresh) {
+            renderPromotionsView(widget);
+            showToast(t('dealsSynced'));
+          } else {
+            showToast(currentLang === 'ko' ? '최신 상태입니다' : 'Already up to date');
+          }
+        } else {
+          setTimeout(() => refreshDealsBtn.classList.remove('rotating'), 600);
+        }
+      });
+    }
+
+    // Auto-subscribe to remote updates
+    if (window.AliPromotionsManager && window.AliPromotionsManager.subscribe) {
+      window.AliPromotionsManager.subscribe(() => {
+        renderPromotionsView(widget);
+      });
+    }
 
     setupDraggable(widget);
 
