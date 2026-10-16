@@ -65,6 +65,7 @@
     hotdeals: [
       {
         id: 'deal_1',
+        category: 'charging',
         titleKo: 'Baseus 65W GaN5 Pro 초고속 멀티 충전기',
         titleEn: 'Baseus 65W GaN5 Pro Fast Charger',
         tagKo: '★ 4.9 베스트셀러',
@@ -78,6 +79,21 @@
       },
       {
         id: 'deal_2',
+        category: 'charging',
+        titleKo: 'Essager 100W C-to-C 디지털 디스플레이 고속 케이블',
+        titleEn: 'Essager 100W C-to-C Fast Cable with LED Display',
+        tagKo: '초가성비 1위',
+        tagEn: 'Top Value Cable',
+        originalPrice: '₩8,200',
+        salePrice: '₩3,900',
+        discount: '52% OFF',
+        rating: '4.9',
+        orders: '45,000+',
+        link: 'https://s.click.aliexpress.com/e/_c3OgBvzx'
+      },
+      {
+        id: 'deal_3',
+        category: 'pc',
         titleKo: 'UGREEN 블루투스 5.4 마우스 무소음 슬림',
         titleEn: 'UGREEN Wireless Bluetooth 5.4 Silent Mouse',
         tagKo: '사무용 가성비 1위',
@@ -90,7 +106,22 @@
         link: 'https://s.click.aliexpress.com/e/_c3OgBvzx'
       },
       {
-        id: 'deal_3',
+        id: 'deal_4',
+        category: 'pc',
+        titleKo: 'AULA F75 유무선 3모드 가스켓 기계식 키보드',
+        titleEn: 'AULA F75 Tri-Mode Gasket Mechanical Keyboard',
+        tagKo: '키보드 끝판왕',
+        tagEn: 'Custom Top Pick',
+        originalPrice: '₩82,000',
+        salePrice: '₩48,000',
+        discount: '41% OFF',
+        rating: '4.9',
+        orders: '12,000+',
+        link: 'https://s.click.aliexpress.com/e/_c3OgBvzx'
+      },
+      {
+        id: 'deal_5',
+        category: 'audio',
         titleKo: 'Anker Soundcore P20i 무선 노이즈캔슬링 이어폰',
         titleEn: 'Anker Soundcore P20i True Wireless Earbuds',
         tagKo: '음질 종결 가성비',
@@ -100,6 +131,48 @@
         discount: '46% OFF',
         rating: '4.9',
         orders: '35,000+',
+        link: 'https://s.click.aliexpress.com/e/_c3OgBvzx'
+      },
+      {
+        id: 'deal_6',
+        category: 'audio',
+        titleKo: 'QCY T13 ANC 액티브 노이즈캔슬링 무선이어폰',
+        titleEn: 'QCY T13 ANC Active Noise Cancelling Earbuds',
+        tagKo: '가성비 노캔 1위',
+        tagEn: 'Best Budget ANC',
+        originalPrice: '₩33,600',
+        salePrice: '₩16,800',
+        discount: '50% OFF',
+        rating: '4.8',
+        orders: '62,000+',
+        link: 'https://s.click.aliexpress.com/e/_c3OgBvzx'
+      },
+      {
+        id: 'deal_7',
+        category: 'life',
+        titleKo: 'Baseus 차량용 초강력 미니 무선 청소기 A2 Pro',
+        titleEn: 'Baseus A2 Pro Cordless Handheld Car Vacuum Cleaner',
+        tagKo: '차량 필수품',
+        tagEn: 'Car Essential',
+        originalPrice: '₩52,000',
+        salePrice: '₩28,500',
+        discount: '45% OFF',
+        rating: '4.9',
+        orders: '19,000+',
+        link: 'https://s.click.aliexpress.com/e/_c3OgBvzx'
+      },
+      {
+        id: 'deal_8',
+        category: 'life',
+        titleKo: '휴대용 디지털 무선 타이어 공기주입기 에어펌프',
+        titleEn: 'Portable Smart Wireless Digital Tire Inflator Air Pump',
+        tagKo: '비상용 필수템',
+        tagEn: 'Emergency Must-Have',
+        originalPrice: '₩39,800',
+        salePrice: '₩21,000',
+        discount: '47% OFF',
+        rating: '4.8',
+        orders: '28,000+',
         link: 'https://s.click.aliexpress.com/e/_c3OgBvzx'
       }
     ]

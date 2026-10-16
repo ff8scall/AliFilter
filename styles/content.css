@@ -1101,9 +1101,9 @@ mark.ali-filter-mark {
 
 .ali-panel-nav {
   display: flex;
-  gap: 4px;
-  padding: 6px 12px 6px;
-  background: rgba(0, 0, 0, 0.2);
+  gap: 3px;
+  padding: 6px 8px;
+  background: rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid var(--af-border-subtle);
 }
 
@@ -1112,22 +1112,23 @@ mark.ali-filter-mark {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 6px 8px;
+  gap: 4px;
+  padding: 5px 4px;
   border-radius: var(--af-radius-sm);
   border: 1px solid transparent;
   background: transparent;
   color: var(--af-text-tertiary);
   font-family: inherit;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   cursor: pointer;
+  white-space: nowrap;
   transition: var(--af-transition);
 }
 
 .ali-nav-tab svg {
-  width: 13px;
-  height: 13px;
+  width: 12px;
+  height: 12px;
   flex-shrink: 0;
 }
 
@@ -1144,14 +1145,88 @@ mark.ali-filter-mark {
 }
 
 .ali-nav-badge {
-  font-size: 9px;
+  font-size: 8.5px;
   font-weight: 800;
-  padding: 1px 4px;
-  border-radius: 4px;
+  padding: 1px 3.5px;
+  border-radius: 3px;
   background: linear-gradient(135deg, #ff4700, #ff8c00);
   color: #fff;
   line-height: 1;
   letter-spacing: 0.02em;
+}
+
+/* Category Filter Chips for Hotdeals */
+.ali-deals-cat-row {
+  display: flex;
+  gap: 5px;
+  overflow-x: auto;
+  padding: 2px 2px 6px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.ali-deals-cat-row::-webkit-scrollbar {
+  display: none;
+}
+
+.ali-deals-cat-chip {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--af-border-subtle);
+  color: var(--af-text-tertiary);
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--af-radius-full);
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: var(--af-transition);
+}
+
+.ali-deals-cat-chip:hover {
+  background: var(--af-bg-hover);
+  color: var(--af-text-secondary);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.ali-deals-cat-chip.active {
+  background: rgba(255, 71, 0, 0.16);
+  border-color: rgba(255, 71, 0, 0.45);
+  color: #ff7a45;
+  box-shadow: 0 2px 8px rgba(255, 71, 0, 0.2);
+}
+
+/* Hotdeals Shuffle / Re-roll button */
+.ali-deals-shuffle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 7px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--af-border-subtle);
+  border-radius: var(--af-radius-sm);
+  color: var(--af-text-tertiary);
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--af-transition);
+}
+
+.ali-deals-shuffle-btn svg {
+  width: 11px;
+  height: 11px;
+}
+
+.ali-deals-shuffle-btn:hover {
+  background: var(--af-bg-hover);
+  color: var(--af-text-primary);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.ali-deals-shuffle-btn.rolling svg {
+  animation: ali-spin 0.55s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .ali-deals-sec {

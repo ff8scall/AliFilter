@@ -110,5 +110,13 @@
     "title": "알리 공식 전회원 쿠폰팩 받기 배너 탑재 (제휴 쿠키 활성화율 및 레퍼럴 극대화)",
     "tags": ["referral-boost", "coupon-pack-banner", "monetization", "affiliate", "glassmorphism", "verified"],
     "logFile": ".gravityBrain/history/2026-10-16_Coupon_Center_Banner.md"
+  },
+  {
+    "id": "2026-10-16_06",
+    "date": "2026-10-16",
+    "taskName": "TriTab_And_Categorized_Hotdeals",
+    "title": "3단 탭(필터/쿠폰/핫딜) 분리 및 카테고리별 핫딜 셔플 큐레이션 구축",
+    "tags": ["tri-tab", "categorized-deals", "shuffle-hotdeals", "ux-redesign", "referral-boost", "verified"],
+    "logFile": ".gravityBrain/history/2026-10-16_TriTab_And_Categorized_Hotdeals.md"
   }
 ]
