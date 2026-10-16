@@ -102,5 +102,13 @@
     "title": "GitHub Actions 완전 무인 자동 프로모션 갱신 봇 (매일/매월 크론 배치 & 자동 커밋/푸시)",
     "tags": ["github-actions", "cron-batch", "zero-touch", "auto-commit", "verified"],
     "logFile": ".gravityBrain/history/2026-10-16_GitHub_Actions_Auto_Updater.md"
+  },
+  {
+    "id": "2026-10-16_05",
+    "date": "2026-10-16",
+    "taskName": "Coupon_Center_Banner",
+    "title": "알리 공식 전회원 쿠폰팩 받기 배너 탑재 (제휴 쿠키 활성화율 및 레퍼럴 극대화)",
+    "tags": ["referral-boost", "coupon-pack-banner", "monetization", "affiliate", "glassmorphism", "verified"],
+    "logFile": ".gravityBrain/history/2026-10-16_Coupon_Center_Banner.md"
   }
 ]

@@ -159,11 +159,25 @@ function runAutoUpdate() {
     }
   ];
 
-  // 3. 핫딜 데이터 (사용자 기존 제휴 딥링크 보존)
+  // 3. 공식 쿠폰팩 배너 (사용자 제휴 링크 보존)
+  const updatedCouponCenter = currentData.couponCenter || {
+    titleKo: `${month}월 공식 전회원 쿠폰팩`,
+    titleEn: `${theme.titleEn} Coupon Pack`,
+    descKo: '선착순 결제 즉시할인 & 알리 코인 최대 혜택',
+    descEn: 'Checkout discounts & max coin rewards',
+    badgeKo: '혜택',
+    badgeEn: 'Bonus',
+    btnKo: '쿠폰팩 받기',
+    btnEn: 'Claim Pack',
+    link: 'https://s.click.aliexpress.com/e/_c3OgBvzx'
+  };
+
+  // 4. 핫딜 데이터 (사용자 기존 제휴 딥링크 보존)
   const updatedHotdeals = currentData.hotdeals || [];
 
   const nextData = {
     meta: updatedMeta,
+    couponCenter: updatedCouponCenter,
     coupons: updatedCoupons,
     hotdeals: updatedHotdeals
   };

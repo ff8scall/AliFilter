@@ -1097,8 +1097,11 @@
               </button>
             </div>
 
+            <!-- 0. Official Coupon Center High-Conversion Banner -->
+            <div id="aliCouponCenterWrap"></div>
+
             <!-- Promo Coupons -->
-            <div class="ali-deals-sec" style="margin-top: 6px;">
+            <div class="ali-deals-sec" style="margin-top: 10px;">
               <div class="ali-sec-header">
                 <span class="ali-sec-title" id="aliCouponsSecTitle">${t('couponsSecTitle')}</span>
                 <span class="ali-sec-info" id="aliCouponsSecHint">${t('couponsSecHint')}</span>
@@ -1352,6 +1355,38 @@
     const updatedEl = widget.querySelector('#aliDealsUpdatedText');
     if (updatedEl && data.meta && data.meta.updatedAt) {
       updatedEl.textContent = `${t('dealsUpdated')} ${data.meta.updatedAt}`;
+    }
+
+    // 0. Official Coupon Center High-Conversion Banner
+    const ccContainer = widget.querySelector('#aliCouponCenterWrap');
+    if (ccContainer && data.couponCenter) {
+      const cc = data.couponCenter;
+      const title = currentLang === 'ko' ? (cc.titleKo || cc.title) : (cc.titleEn || cc.title);
+      const desc = currentLang === 'ko' ? (cc.descKo || cc.desc) : (cc.descEn || cc.desc);
+      const badge = currentLang === 'ko' ? (cc.badgeKo || cc.badge || '혜택') : (cc.badgeEn || cc.badge || 'Bonus');
+      const btnText = currentLang === 'ko' ? (cc.btnKo || '쿠폰팩 받기') : (cc.btnEn || 'Claim Pack');
+      const link = cc.link || 'https://s.click.aliexpress.com/e/_c3OgBvzx';
+
+      ccContainer.innerHTML = `
+        <a href="${link}" target="_blank" rel="noopener noreferrer" class="ali-coupon-center-banner" title="${title}">
+          <div class="ali-cc-left">
+            <div class="ali-cc-icon-box">🎟️</div>
+            <div class="ali-cc-text-box">
+              <div class="ali-cc-title-row">
+                <span class="ali-cc-title">${title}</span>
+                <span class="ali-cc-badge">${badge}</span>
+              </div>
+              <span class="ali-cc-desc">${desc}</span>
+            </div>
+          </div>
+          <div class="ali-cc-btn">
+            <span>${btnText}</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </div>
+        </a>
+      `;
     }
 
     // Coupons

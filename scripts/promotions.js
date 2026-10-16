@@ -19,6 +19,17 @@
       titleKo: '10월 알리 특별 프로모션 & 검증 핫딜',
       titleEn: 'AliExpress Monthly Deals & Promo Codes'
     },
+    couponCenter: {
+      titleKo: '이달의 공식 전회원 쿠폰팩',
+      titleEn: 'Monthly Official Coupon Pack',
+      descKo: '선착순 결제 즉시할인 & 알리 코인 최대 혜택',
+      descEn: 'Checkout discounts & max coin rewards',
+      badgeKo: '혜택',
+      badgeEn: 'Bonus',
+      btnKo: '쿠폰팩 받기',
+      btnEn: 'Claim Pack',
+      link: 'https://s.click.aliexpress.com/e/_c3OgBvzx'
+    },
     coupons: [
       {
         id: 'coupon_1',

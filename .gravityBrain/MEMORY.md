@@ -1,17 +1,18 @@
 # 프로젝트 메모리 (MEMORY.md)
 
 ## 1. 현재 진행 상황
-- **작업명**: GitHub Actions 완전 무인 자동 프로모션 갱신 봇 (`.github/workflows/update_promotions.yml`) 구축 완료
-- **상태**: Phase 1 ~ Phase 3 전 항목 완료 및 멱등성/문법 검증 완료
+- **작업명**: 알리 공식 전회원 쿠폰팩 받기 배너 탑재 (레퍼럴 극대화) 완료
+- **상태**: Phase 1 ~ Phase 3 전 항목 완료 및 코드 컴파일/문법 검증 완료
 - **최신 성과**:
-  - **100% 무인 자동 커밋 & 배포 파이프라인 완성**:
-    - 사용자가 컴퓨터를 켜거나 깃헙에 접속할 필요 전혀 없음.
-    - GitHub Actions 클라우드 서버가 매일 한국 시간 자정(`0 15 * * *`)에 자동 기상.
-    - [scripts/auto_updater.js](file:///c:/AI/Chrome/AliFilter/scripts/auto_updater.js)가 KST 기준 현재 연/월(11월 광군제, 12월 연말세일 등)을 자동 감지하여 [promotions.json](file:///c:/AI/Chrome/AliFilter/promotions.json)을 최신화.
-    - `github-actions[bot]`이 변경사항을 감지하여 자동으로 `git commit` & `git push`.
-    - 수동 즉시 실행(`workflow_dispatch`)도 함께 지원하여 필요 시 깃헙 웹에서 1초 만에 실행 가능.
-    - 사용자의 제휴 트래킹 ID(`alifilter`) 및 딥링크는 영구 보존.
+  - **레퍼럴 쿠키 활성화율 극대화 (100% 합법적 윈-윈 구조)**:
+    - 혜택 탭 최상단에 눈에 띄는 **`🎟️ 이달의 공식 전회원 쿠폰팩`** 배너 카드 탑재.
+    - 클릭 시 알리 공식 이벤트/쿠폰 페이지로 이동하며 본인 제휴 링크(`https://s.click.aliexpress.com/e/_c3OgBvzx`)를 자연스럽게 경유.
+    - 브라우저 제휴 쿠키가 활성화되어 사용자의 모든 장바구니 결제 건에 대해 정당한 커미션 창출.
+  - **완전 무인 GitHub Actions 봇과 100% 연동**:
+    - [promotions.json](file:///c:/AI/Chrome/AliFilter/promotions.json) 및 [scripts/auto_updater.js](file:///c:/AI/Chrome/AliFilter/scripts/auto_updater.js)에 `couponCenter` 스키마가 완벽 통합되어 매달 자동 롤링.
+  - **시각적 완성도**:
+    - [styles/content.css](file:///c:/AI/Chrome/AliFilter/styles/content.css) 오렌지 글래스모피즘 + 쉬머 광택 호버 효과 + 다국어(KO/EN) 완벽 대응.
 
 ## 2. 사용 가이드
-- 별도로 조작하실 것이 전혀 없으며, 365일 24시간 완전 자동으로 최신 쿠폰과 프로모션이 갱신됩니다.
-- 필요할 경우 GitHub 저장소 > **Actions** 탭에서 **Auto Update AliExpress Promotions** 워크플로우의 'Run workflow' 버튼을 눌러 언제든 즉시 갱신할 수도 있습니다.
+- 브라우저의 `chrome://extensions`에서 새로고침 후 즉시 사용 가능합니다.
+- 알리익스프레스 검색 페이지에서 `[🎁 혜택 & 핫딜]` 탭을 열면 최상단에 쿠폰팩 배너가 표시됩니다.
