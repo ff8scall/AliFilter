@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>AliExpress USD Simulation Demo</title>
+  <link rel="stylesheet" href="../styles/content.css?v=phase9">
+  <style>
+    body { background: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 24px; }
+    .demo-header { background: #fff; padding: 18px 26px; border-radius: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; }
+    .search-key-box { width: 380px; padding: 10px 18px; font-size: 14px; border: 2px solid #ff4700; border-radius: 20px; outline: none; }
+    .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 18px; max-width: 1240px; margin: 0 auto; }
+    .search-card-item { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); position: relative; display: flex; flex-direction: column; }
+    .img-box { width: 100%; height: 180px; background: #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 32px; }
+    .content-box { padding: 14px; display: flex; flex-direction: column; flex: 1; justify-content: space-between; }
+    .multi--titleText-- { font-size: 13px; line-height: 1.45; color: #1e293b; margin-bottom: 8px; }
+    .price { font-size: 18px; font-weight: 700; color: #ff4700; }
+  </style>
+</head>
+<body>
+  <div class="demo-header">
+    <div>
+      <h2 style="margin: 0 0 4px; color: #ff4700;">AliExpress USD ($) 통화 자동 감지 데모</h2>
+      <small style="color: #64748b;">화면의 통화가 달러($)인 경우, 프리셋 칩과 입력창이 자동으로 달러($) 규격으로 전환됩니다.</small>
+    </div>
+    <input type="text" class="search-key-box" value="esp32 c3 type-c" />
+  </div>
+
+  <div class="grid-container">
+    <!-- Card 1: $2.85 | 1,200+ sold | ★ 4.8 -->
+    <div class="search-card-item">
+      <div class="img-box">🔌</div>
+      <div class="content-box">
+        <a href="https://www.aliexpress.com/item/1.html" style="text-decoration:none;"><div class="multi--titleText--">ESP32 C3 Type-C SuperMini Board WiFi BLE</div></a>
+        <div style="font-size: 11px; color: #64748b; margin-bottom: 4px;">
+          <span class="star--score" style="color: #f59e0b; font-weight: 600;">★ 4.8</span> · <span class="trade--sales">1,200+ sold</span>
+        </div>
+        <div class="price">US $2.85</div>
+      </div>
+    </div>
+
+    <!-- Card 2: $3.40 | 5,400+ sold | ★ 4.9 -->
+    <div class="search-card-item">
+      <div class="img-box">⚡</div>
+      <div class="content-box">
+        <a href="https://www.aliexpress.com/item/2.html" style="text-decoration:none;"><div class="multi--titleText--">New ESP32-C3 Type-C Dev Board with Antenna</div></a>
+        <div style="font-size: 11px; color: #64748b; margin-bottom: 4px;">
+          <span class="star--score" style="color: #f59e0b; font-weight: 600;">★ 4.9</span> · <span class="trade--sales">5,400+ sold</span>
+        </div>
+        <div class="price">$3.40</div>
+      </div>
+    </div>
+
+    <!-- Card 3: $28.00 | 45 sold | ★ 4.2 (Low sales & low rating kit) -->
+    <div class="search-card-item">
+      <div class="img-box">💎</div>
+      <div class="content-box">
+        <a href="https://www.aliexpress.com/item/3.html" style="text-decoration:none;"><div class="multi--titleText--">ESP32 C3 Type-C Complete Full Kit with Display</div></a>
+        <div style="font-size: 11px; color: #64748b; margin-bottom: 4px;">
+          <span class="star--score" style="color: #64748b;">★ 4.2</span> · <span class="trade--sales">45 sold</span>
+        </div>
+        <div class="price">$28.00</div>
+      </div>
+    </div>
+
+    <!-- Card 4: $0.45 | 12 sold | ★ 4.0 (Bait item) -->
+    <div class="search-card-item">
+      <div class="img-box">🪛</div>
+      <div class="content-box">
+        <a href="https://www.aliexpress.com/item/4.html" style="text-decoration:none;"><div class="multi--titleText--">ESP32 C3 Type-C Bolt Nut accessory single piece</div></a>
+        <div style="font-size: 11px; color: #64748b; margin-bottom: 4px;">
+          <span class="star--score" style="color: #64748b;">★ 4.0</span> · <span class="trade--sales">12 sold</span>
+        </div>
+        <div class="price">$0.45</div>
+      </div>
+    </div>
+
+    <!-- Card 5: Case Accessory (Target for Negative Keyword "케이스" / "Case") -->
+    <div class="search-card-item">
+      <div class="img-box">📦</div>
+      <div class="content-box">
+        <a href="https://www.aliexpress.com/item/5.html" style="text-decoration:none;"><div class="multi--titleText--">ESP32 C3 Type-C Transparent Acrylic Case Shell Cover</div></a>
+        <div style="font-size: 11px; color: #64748b; margin-bottom: 4px;">
+          <span class="star--score" style="color: #f59e0b;">★ 4.7</span> · <span class="trade--sales">890+ sold</span>
+        </div>
+        <div class="price">$1.20</div>
+      </div>
+    </div>
+
+    <!-- Card 6: Strap Accessory (Target for Negative Keyword "스트랩" / "Strap") -->
+    <div class="search-card-item">
+      <div class="img-box">🎗️</div>
+      <div class="content-box">
+        <a href="https://www.aliexpress.com/item/6.html" style="text-decoration:none;"><div class="multi--titleText--">ESP32 C3 Type-C Silicone Hanging Strap Lanyard</div></a>
+        <div style="font-size: 11px; color: #64748b; margin-bottom: 4px;">
+          <span class="star--score" style="color: #f59e0b;">★ 4.6</span> · <span class="trade--sales">340+ sold</span>
+        </div>
+        <div class="price">$0.99</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    if (!window.chrome || !chrome.storage) {
+      window.chrome = {
+        storage: { local: { get: (d) => Promise.resolve(d), set: () => Promise.resolve() } },
+        runtime: { onMessage: { addListener: () => {} } }
+      };
+    }
+  </script>
+  <script src="../scripts/promotions.js"></script>
+  <script src="../scripts/content.js?v=phase10"></script>
+</body>
+</html>

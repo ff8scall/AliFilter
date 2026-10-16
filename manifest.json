@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "AliFilter - 알리익스프레스 정밀 검색 필터 & 하이라이터",
+  "version": "1.0.0",
+  "description": "알리익스프레스 검색 시 필수 키워드가 포함된 상품만 엄선하여 보여주고, 검색어를 눈에 띄게 하이라이트합니다.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.aliexpress.com/*",
+    "*://*.aliexpress.us/*"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "알리 정밀 필터 설정",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.aliexpress.com/*",
+        "*://*.aliexpress.us/*"
+      ],
+      "js": [
+        "scripts/promotions.js",
+        "scripts/content.js"
+      ],
+      "css": [
+        "styles/content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

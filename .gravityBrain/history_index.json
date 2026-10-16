@@ -1,0 +1,82 @@
+[
+  {
+    "id": "2026-10-15_01",
+    "date": "2026-10-15",
+    "taskName": "AliFilter_Planning",
+    "title": "알리익스프레스 필수 검색어 필터링 및 하이라이트 크롬 확장 프로그램 기획",
+    "tags": ["aliexpress", "chrome-extension", "manifest-v3", "filter", "highlight"],
+    "logFile": ".gravityBrain/history/2026-10-15_AliFilter_Planning.md"
+  },
+  {
+    "id": "2026-10-15_02",
+    "date": "2026-10-15",
+    "taskName": "AliFilter_Implementation",
+    "title": "AliFilter 확장 프로그램 코어 엔진, 플로팅 UI 및 브라우저 검증 완료",
+    "tags": ["implementation", "content-script", "mutation-observer", "floating-ui", "verified"],
+    "logFile": ".gravityBrain/history/2026-10-15_AliFilter_Implementation.md"
+  },
+  {
+    "id": "2026-10-15_03",
+    "date": "2026-10-15",
+    "taskName": "AliFilter_Step1_Step2",
+    "title": "1단계 유연 매칭 엔진 정규화 및 2단계 스마트 컴팩트 알약 바 & 단축키 고도화",
+    "tags": ["normalization", "flexible-regex", "compact-pill", "keyboard-shortcut", "verified"],
+    "logFile": ".gravityBrain/history/2026-10-15_Step1_Step2_Refinement.md"
+  },
+  {
+    "id": "2026-10-15_04",
+    "date": "2026-10-15",
+    "taskName": "AliFilter_Price_Filter",
+    "title": "실시간 스마트 가격대 필터 (직접 입력 + 원클릭 퀵 칩 + 낚시 옵션 컷오프)",
+    "tags": ["price-filter", "presets", "bait-cutoff", "realtime", "verified"],
+    "logFile": ".gravityBrain/history/2026-10-15_Smart_Price_Filter.md"
+  },
+  {
+    "id": "2026-10-15_05",
+    "date": "2026-10-15",
+    "taskName": "Linear_UI_Redesign",
+    "title": "AI 티 박멸 및 Linear / Raycast 감성 프리미엄 다크 글래스모피즘 전면 리디자인",
+    "tags": ["ui-redesign", "linear-style", "raycast", "dark-glassmorphism", "no-emoji", "verified"],
+    "logFile": ".gravityBrain/history/2026-10-15_Linear_UI_Redesign.md"
+  },
+  {
+    "id": "2026-10-15_06",
+    "date": "2026-10-15",
+    "taskName": "Popup_Redesign_and_Draggable",
+    "title": "상단 팝업창 일관 리디자인 및 플로팅 바 드래그 앤 드롭 (장바구니/계정 가림 완전 방지)",
+    "tags": ["popup-redesign", "draggable", "safe-placement", "unblock-cart", "verified"],
+    "logFile": ".gravityBrain/history/2026-10-15_Popup_Redesign_and_Draggable.md"
+  },
+  {
+    "id": "2026-10-15_07",
+    "date": "2026-10-15",
+    "taskName": "Negative_Keywords_and_Trust_Filter",
+    "title": "부정(제외) 키워드 한/영 스마트 매칭 및 누적 판매량 & 평점 신뢰도 필터 고도화",
+    "tags": ["negative-keywords", "bilingual-aliases", "sales-filter", "rating-filter", "verified"],
+    "logFile": ".gravityBrain/history/2026-10-15_Negative_Keywords_and_Trust_Filter.md"
+  },
+  {
+    "id": "2026-10-15_08",
+    "date": "2026-10-15",
+    "taskName": "I18N_Support",
+    "title": "글로벌 다국어 지원 (i18n: 한국어 KO / 영어 EN) 및 원클릭 인플레이스 토글",
+    "tags": ["i18n", "bilingual", "ko-en", "instant-toggle", "verified"],
+    "logFile": ".gravityBrain/history/2026-10-15_I18N_Support.md"
+  },
+  {
+    "id": "2026-10-15_09",
+    "date": "2026-10-15",
+    "taskName": "Help_Guide_Modal",
+    "title": "초간단 한/영 인터랙티브 도움말 가이드 (? 버튼 & 최초 1회 온보딩)",
+    "tags": ["help-guide", "onboarding", "bilingual", "question-btn", "verified"],
+    "logFile": ".gravityBrain/history/2026-10-15_Help_Guide_Modal.md"
+  },
+  {
+    "id": "2026-10-16_01",
+    "date": "2026-10-16",
+    "taskName": "Affiliate_Deals_Tab",
+    "title": "AliFilter 제휴 혜택 & 핫딜 추천 탭 (쿠폰 안내 & 5성급 핫딜 큐레이션 및 트래킹 ID 연동)",
+    "tags": ["affiliate", "portals", "tracking-id", "deals", "coupons", "i18n", "verified"],
+    "logFile": ".gravityBrain/history/2026-10-16_Affiliate_Deals_Tab.md"
+  }
+]
