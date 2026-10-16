@@ -78,5 +78,13 @@
     "title": "AliFilter 제휴 혜택 & 핫딜 추천 탭 (쿠폰 안내 & 5성급 핫딜 큐레이션 및 트래킹 ID 연동)",
     "tags": ["affiliate", "portals", "tracking-id", "deals", "coupons", "i18n", "verified"],
     "logFile": ".gravityBrain/history/2026-10-16_Affiliate_Deals_Tab.md"
+  },
+  {
+    "id": "2026-10-16_02",
+    "date": "2026-10-16",
+    "taskName": "GitHub_Repository_Setup",
+    "title": "GitHub 원격 저장소 초기화, .gitignore 생성 및 첫 커밋/푸시 완료",
+    "tags": ["git", "github", "repository-setup", "initial-commit", "push"],
+    "logFile": ".gravityBrain/history/2026-10-16_GitHub_Repository_Setup.md"
   }
 ]
