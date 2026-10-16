@@ -3,24 +3,24 @@
     "trackingId": "alifilter",
     "updatedAt": "2026-10",
     "titleKo": "10월 알리 특별 프로모션 & 검증 핫딜",
-    "titleEn": "AliExpress Monthly Deals & Promo Codes"
+    "titleEn": "October Special Promo & Verified Hot Deals"
   },
   "coupons": [
     {
       "id": "coupon_1",
       "titleKo": "$29 이상 구매 시 $3 즉시 할인",
       "titleEn": "$3 OFF on orders over $29",
-      "code": "ALIFILTER03",
-      "badge": "선착순",
-      "badgeEn": "Limited",
-      "descKo": "모든 알리익스프레스 직구 상품 적용 가능",
-      "descEn": "Applicable to global items"
+      "code": "ALIFILTER1003",
+      "badge": "10월특가",
+      "badgeEn": "October Deals",
+      "descKo": "10월 모든 알리익스프레스 직구 상품 적용 가능",
+      "descEn": "Applicable to global items in 2026-10"
     },
     {
       "id": "coupon_2",
       "titleKo": "$69 이상 구매 시 $8 즉시 할인",
       "titleEn": "$8 OFF on orders over $69",
-      "code": "ALIFILTER08",
+      "code": "ALIFILTER1008",
       "badge": "인기",
       "badgeEn": "Popular",
       "descKo": "가전/디지털/캠핑 카테고리 강력 추천",
@@ -30,10 +30,10 @@
       "id": "coupon_3",
       "titleKo": "$139 이상 구매 시 $18 즉시 할인",
       "titleEn": "$18 OFF on orders over $139",
-      "code": "ALIFILTER18",
+      "code": "ALIFILTER1018",
       "badge": "슈퍼세일",
       "badgeEn": "Super Deal",
-      "descKo": "장바구니 결제 단계에서 코드 입력",
+      "descKo": "장바구니 결제 단계에서 프로모션 코드 입력",
       "descEn": "Enter promo code at checkout"
     }
   ],

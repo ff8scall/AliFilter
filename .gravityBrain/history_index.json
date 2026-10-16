@@ -94,5 +94,13 @@
     "title": "원격 프로모션 JSON 동기화 & 실시간 갱신 시스템 구축 (6시간 캐시 + Fallback + UI 수동 새로고침)",
     "tags": ["promotions-sync", "remote-json", "cache-ttl", "zero-downtime", "fallback", "verified"],
     "logFile": ".gravityBrain/history/2026-10-16_Remote_Promotions_Sync.md"
+  },
+  {
+    "id": "2026-10-16_04",
+    "date": "2026-10-16",
+    "taskName": "GitHub_Actions_Auto_Updater",
+    "title": "GitHub Actions 완전 무인 자동 프로모션 갱신 봇 (매일/매월 크론 배치 & 자동 커밋/푸시)",
+    "tags": ["github-actions", "cron-batch", "zero-touch", "auto-commit", "verified"],
+    "logFile": ".gravityBrain/history/2026-10-16_GitHub_Actions_Auto_Updater.md"
   }
 ]

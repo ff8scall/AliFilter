@@ -1,0 +1,43 @@
+name: Auto Update AliExpress Promotions
+
+on:
+  schedule:
+    # 매일 한국 시간 자정 (15:00 UTC = 00:00 KST)에 자동 실행
+    - cron: '0 15 * * *'
+  # GitHub 웹페이지 Actions 탭에서 언제든 'Run workflow' 버튼으로 즉시 수동 실행 가능
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  auto-update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run Promotions Auto Updater
+        run: node scripts/auto_updater.js
+
+      - name: Commit and Push Changes if needed
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          if [ -n "$(git status --porcelain promotions.json)" ]; then
+            git add promotions.json
+            git commit -m "chore(auto): Update monthly promotions and deals [skip ci]"
+            git push origin main
+            echo "Successfully updated and pushed promotions.json!"
+          else
+            echo "No updates needed. promotions.json is already fresh."
+          fi
