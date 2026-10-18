@@ -118,5 +118,13 @@
     "title": "3단 탭(필터/쿠폰/핫딜) 분리 및 카테고리별 핫딜 셔플 큐레이션 구축",
     "tags": ["tri-tab", "categorized-deals", "shuffle-hotdeals", "ux-redesign", "referral-boost", "verified"],
     "logFile": ".gravityBrain/history/2026-10-16_TriTab_And_Categorized_Hotdeals.md"
+  },
+  {
+    "id": "2026-10-19_01",
+    "date": "2026-10-19",
+    "taskName": "Fix_Expired_Promotions",
+    "title": "알리익스프레스 프로모션 코드 만료 문제 해결 및 실사용 유효 코드 연동 (갱신 봇 로직 개선 & UI 팁 안내)",
+    "tags": ["promotions-fix", "real-promo-codes", "auto-updater", "ui-tip", "verified"],
+    "logFile": ".gravityBrain/history/2026-10-19_Fix_Expired_Promotions.md"
   }
 ]

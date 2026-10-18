@@ -33,33 +33,43 @@
     coupons: [
       {
         id: 'coupon_1',
-        titleKo: '$29 이상 구매 시 $3 즉시 할인',
-        titleEn: '$3 OFF on orders over $29',
-        code: 'ALIFILTER03',
-        badge: '선착순',
-        badgeEn: 'Limited',
-        descKo: '모든 알리익스프레스 직구 상품 적용 가능',
-        descEn: 'Applicable to global items'
+        titleKo: '$34 이상 구매 시 $4 즉시 할인',
+        titleEn: '$4 OFF on orders over $34',
+        code: 'GCAP04',
+        badge: '인기',
+        badgeEn: 'Popular',
+        descKo: '초이스 및 알리 직구 전상품 (선착순 마감)',
+        descEn: 'Choice & Global items (Limited quota)'
       },
       {
         id: 'coupon_2',
-        titleKo: '$69 이상 구매 시 $8 즉시 할인',
-        titleEn: '$8 OFF on orders over $69',
-        code: 'ALIFILTER08',
-        badge: '인기',
-        badgeEn: 'Popular',
+        titleKo: '$76 이상 구매 시 $9 즉시 할인',
+        titleEn: '$9 OFF on orders over $76',
+        code: 'GCAP09',
+        badge: '추천',
+        badgeEn: 'Top Pick',
         descKo: '가전/디지털/캠핑 카테고리 강력 추천',
         descEn: 'Great for Electronics & Outdoor'
       },
       {
         id: 'coupon_3',
-        titleKo: '$139 이상 구매 시 $18 즉시 할인',
-        titleEn: '$18 OFF on orders over $139',
-        code: 'ALIFILTER18',
+        titleKo: '$142 이상 구매 시 $15 즉시 할인',
+        titleEn: '$15 OFF on orders over $142',
+        code: 'GCAP15',
         badge: '슈퍼세일',
         badgeEn: 'Super Deal',
         descKo: '장바구니 결제 단계에서 코드 입력',
         descEn: 'Enter promo code at checkout'
+      },
+      {
+        id: 'coupon_4',
+        titleKo: '$359 이상 구매 시 $36 즉시 할인',
+        titleEn: '$36 OFF on orders over $359',
+        code: 'GCAP36',
+        badge: '메가할인',
+        badgeEn: 'Mega Deal',
+        descKo: '고가 전자기기/가전 주문 시 최대 할인',
+        descEn: 'Maximum savings on high-value orders'
       }
     ],
     hotdeals: [

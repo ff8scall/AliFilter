@@ -124,7 +124,9 @@
       dealsSyncing: '최신 혜택 동기화 중...',
       dealsSynced: '최신 혜택 갱신 완료!',
       dealsUpdated: '업데이트:',
-      refreshDealsBtn: '새로고침'
+      refreshDealsBtn: '새로고침',
+      couponTipTitle: '프로모션 코드 이용 팁',
+      couponTipDesc: '알리 프로모션 코드는 선착순 한도 소진 시 조기 만료될 수 있습니다. 코드가 마감되었을 경우 상단 [공식 전회원 쿠폰팩]을 발급받으시면 결제 시 즉시할인이 안전하게 적용됩니다.'
     },
     en: {
       mustKw: 'Must Keywords',
@@ -208,7 +210,9 @@
       dealsSyncing: 'Syncing latest deals...',
       dealsSynced: 'Latest deals updated!',
       dealsUpdated: 'Updated:',
-      refreshDealsBtn: 'Refresh'
+      refreshDealsBtn: 'Refresh',
+      couponTipTitle: 'Promo Code Tips',
+      couponTipDesc: 'AliExpress promo codes are limited and may expire early once quotas are filled. If a code is exhausted, claim the Official Coupon Pack above for guaranteed checkout discounts.'
     }
   };
 
@@ -1129,6 +1133,9 @@
               <div class="ali-coupons-list" id="aliCouponsList"></div>
             </div>
 
+            <!-- Helpful Notice Tip Box -->
+            <div id="aliCouponsTipWrap"></div>
+
             <!-- Transparency Notice -->
             <div class="ali-deals-notice">
               ${t('affiliateNotice')}
@@ -1474,6 +1481,20 @@
           copyToClipboard(code, btn);
         });
       });
+    }
+
+    // Helpful Notice Tip Box
+    const tipWrap = widget.querySelector('#aliCouponsTipWrap');
+    if (tipWrap) {
+      tipWrap.innerHTML = `
+        <div class="ali-coupons-tip-box">
+          <div class="ali-tip-icon">💡</div>
+          <div class="ali-tip-content">
+            <div class="ali-tip-title">${t('couponTipTitle')}</div>
+            <div class="ali-tip-desc">${t('couponTipDesc')}</div>
+          </div>
+        </div>
+      `;
     }
   }
 
