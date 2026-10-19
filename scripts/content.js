@@ -273,27 +273,61 @@
   }
 
   /**
-   * 2. Price Parsing Helper
+   * 2. Price Parsing Helper (정밀 가격 추출 엔진)
+   * - -54%, 50% 등 할인율 퍼센트를 가격으로 오인식하던 버그 완전 제거
+   * - 원래 가격(정가/취소선) 배제 및 실제 판매가(할인가) 우선 파싱
+   * - US $ / $ / ₩ / 원화 등 다국어 통화 정규화 지원
    */
   function parsePrice(text) {
     if (!text) return null;
-    const isUsd = text.includes('$') || text.includes('USD') || text.includes('US');
-    const cleaned = text.replace(/,/g, '');
-    const match = cleaned.match(/\d+(\.\d+)?/);
-    if (!match) return null;
-    return { val: parseFloat(match[0]), isUsd };
+    const isUsd = /[$]|USD|US\s*\$/i.test(text);
+
+    // 1. 할인율 퍼센트(-54%, 50% off 등) 제거
+    let cleaned = text.replace(/-?\s*\d+(?:\.\d+)?\s*%/g, ' ');
+
+    // 2. 소수점 공백 정규화 ("115 .95" 또는 "115 . 95" -> "115.95")
+    cleaned = cleaned.replace(/(\d+)\s*\.\s*(\d+)/g, '$1.$2');
+
+    // 3. 자릿수 콤마 및 공백 제거 ("158, 200" -> "158200")
+    cleaned = cleaned.replace(/(\d+)\s*,\s*(\d+)/g, '$1$2');
+    cleaned = cleaned.replace(/,/g, '');
+
+    // 원화의 경우 3자리 공백 분리 처리 ("158 200원" -> "158200원")
+    if (/₩|원|KRW/i.test(text)) {
+      cleaned = cleaned.replace(/(\d+)\s+(\d{3})(?!\.\d)/g, '$1$2');
+    }
+
+    // 4. 통화 기호가 붙은 가격 우선 추출 (USD)
+    const usdMatch = cleaned.match(/(?:US\s*\$|\$)\s*(\d+(?:\.\d+)?)/i);
+    if (usdMatch) {
+      return { val: parseFloat(usdMatch[1]), isUsd: true };
+    }
+
+    // 5. 통화 기호가 붙은 가격 우선 추출 (KRW)
+    const krwMatch = cleaned.match(/(?:₩|KRW)\s*(\d+)/i) || cleaned.match(/(\d+)\s*(?:원|KRW)/i);
+    if (krwMatch) {
+      return { val: parseFloat(krwMatch[1]), isUsd: false };
+    }
+
+    // 6. 통화 기호 없는 숫자 폴백
+    const genericMatch = cleaned.match(/\d+(?:\.\d+)?/);
+    if (genericMatch) {
+      return { val: parseFloat(genericMatch[0]), isUsd };
+    }
+
+    return null;
   }
 
   function getCardPrice(card) {
-    const priceSelectors = [
-      'div[class*="multi--price-sale--"]',
-      'div[class*="price--current--"]',
-      'div[class*="price--"]',
-      'span[class*="price"]',
-      'div[class*="price"]',
-      '.price'
+    // 1. 실제 판매가(할인가) 전용 셀렉터 우선 검색
+    const saleSelectors = [
+      '[class*="multi--price-sale--"]',
+      '[class*="price-sale"]',
+      '[class*="price--current--"]',
+      '[class*="current-price"]',
+      '[class*="sale-price"]'
     ];
-    for (const sel of priceSelectors) {
+    for (const sel of saleSelectors) {
       const el = card.querySelector(sel);
       if (el) {
         const parsed = parsePrice(el.textContent);
@@ -302,7 +336,34 @@
         }
       }
     }
-    return null;
+
+    // 2. 가격 컨테이너 셀렉터 (취소선/정가 요소 del, strike, original 배제 후 파싱)
+    const containerSelectors = [
+      'div[class*="multi--price--"]',
+      'div[class*="price--"]',
+      'span[class*="price"]',
+      'div[class*="price"]',
+      '.price'
+    ];
+    for (const sel of containerSelectors) {
+      const el = card.querySelector(sel);
+      if (el) {
+        let text = el.textContent;
+        try {
+          const clone = el.cloneNode(true);
+          clone.querySelectorAll('del, strike, s, [class*="original"], [class*="origin"]').forEach(del => del.remove());
+          text = clone.textContent;
+        } catch (e) {}
+
+        const parsed = parsePrice(text);
+        if (parsed && !isNaN(parsed.val)) {
+          return parsed;
+        }
+      }
+    }
+
+    // 3. 카드 전체 텍스트 기반 폴백
+    return parsePrice(card.textContent);
   }
 
   /**

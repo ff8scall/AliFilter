@@ -126,5 +126,13 @@
     "title": "알리익스프레스 프로모션 코드 만료 문제 해결 및 실사용 유효 코드 연동 (갱신 봇 로직 개선 & UI 팁 안내)",
     "tags": ["promotions-fix", "real-promo-codes", "auto-updater", "ui-tip", "verified"],
     "logFile": ".gravityBrain/history/2026-10-19_Fix_Expired_Promotions.md"
+  },
+  {
+    "id": "2026-10-19_02",
+    "date": "2026-10-19",
+    "taskName": "Fix_Price_Filter_Discount_Bug",
+    "title": "가격 필터 할인율 퍼센트(-54%, -51%) 오인식 버그 근본 수정 및 정밀 통화 파서 구축",
+    "tags": ["price-filter", "bugfix", "discount-percent", "currency-parser", "verified"],
+    "logFile": ".gravityBrain/history/2026-10-19_Fix_Price_Filter_Discount_Bug.md"
   }
 ]
