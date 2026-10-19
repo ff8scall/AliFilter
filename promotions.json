@@ -6,14 +6,14 @@
     "titleEn": "October Special Promo & Verified Hot Deals"
   },
   "couponCenter": {
-    "titleKo": "이달의 공식 전회원 쿠폰팩",
-    "titleEn": "Monthly Official Coupon Pack",
-    "descKo": "선착순 결제 즉시할인 & 알리 코인 최대 혜택",
-    "descEn": "Checkout discounts & max coin rewards",
-    "badgeKo": "혜택",
-    "badgeEn": "Bonus",
-    "btnKo": "쿠폰팩 받기",
-    "btnEn": "Claim Pack",
+    "titleKo": "초이스 알뜰마트 & 골라담기 특가전",
+    "titleEn": "Choice Bundle Deals & Super Value",
+    "descKo": "3개 이상 골라담기 무료배송 & 초특가 최대 할인",
+    "descEn": "3+ items bundle deals & free shipping",
+    "badgeKo": "초특가",
+    "badgeEn": "Special",
+    "btnKo": "특가전 보기",
+    "btnEn": "View Deals",
     "link": "https://s.click.aliexpress.com/e/_c3OgBvzx"
   },
   "coupons": [
