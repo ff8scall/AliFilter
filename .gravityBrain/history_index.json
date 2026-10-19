@@ -134,5 +134,13 @@
     "title": "가격 필터 할인율 퍼센트(-54%, -51%) 오인식 버그 근본 수정 및 정밀 통화 파서 구축",
     "tags": ["price-filter", "bugfix", "discount-percent", "currency-parser", "verified"],
     "logFile": ".gravityBrain/history/2026-10-19_Fix_Price_Filter_Discount_Bug.md"
+  },
+  {
+    "id": "2026-10-19_03",
+    "date": "2026-10-19",
+    "taskName": "Hotdeals_Real_Link_And_2Tab_Streamline",
+    "title": "핫딜 실제 상품 링크 연결 및 위젯 2-Tab 간소화 (죽은 쿠폰 탭 완전 제거)",
+    "tags": ["hotdeals", "real-product-links", "streamline-2tab", "remove-dead-coupons", "verified"],
+    "logFile": ".gravityBrain/history/2026-10-19_Hotdeals_Real_Link_And_2Tab_Streamline.md"
   }
 ]
