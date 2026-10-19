@@ -124,71 +124,8 @@ function runAutoUpdate() {
     titleEn: theme.titleEn
   };
 
-  // 2. 프로모션 코드 보존 및 동기화 (가짜 임의 코드 생성 전면 배제)
-  // - 기존 promotions.json에 등록된 실제 유효 프로모션 코드를 100% 무손실 보존합니다.
-  // - 코드가 없거나 레거시 가상 코드(ALIFILTER)인 경우에만 검증된 실제 유효 코드 풀로 안전하게 전환합니다.
-  let updatedCoupons = [];
-  const existingCoupons = Array.isArray(currentData.coupons) ? currentData.coupons : [];
-  const hasRealCodes = existingCoupons.length > 0 && !existingCoupons.some(c => c.code && c.code.startsWith('ALIFILTER'));
-
-  if (hasRealCodes) {
-    updatedCoupons = existingCoupons.map((c, idx) => {
-      let badge = c.badge;
-      let badgeEn = c.badgeEn;
-      if (idx === 0) {
-        badge = theme.badgeKo;
-        badgeEn = theme.badgeEn;
-      }
-      return {
-        ...c,
-        badge,
-        badgeEn
-      };
-    });
-  } else {
-    updatedCoupons = [
-      {
-        id: 'coupon_1',
-        titleKo: '$34 이상 구매 시 $4 즉시 할인',
-        titleEn: '$4 OFF on orders over $34',
-        code: 'GCAP04',
-        badge: theme.badgeKo,
-        badgeEn: theme.badgeEn,
-        descKo: '초이스 및 알리 글로벌 직구 적용 (선착순 마감)',
-        descEn: 'Applicable to Choice & Global items (Subject to quota)'
-      },
-      {
-        id: 'coupon_2',
-        titleKo: '$76 이상 구매 시 $9 즉시 할인',
-        titleEn: '$9 OFF on orders over $76',
-        code: 'GCAP09',
-        badge: '인기',
-        badgeEn: 'Popular',
-        descKo: '가전/디지털/캠핑 카테고리 강력 추천',
-        descEn: 'Great for Electronics & Outdoor'
-      },
-      {
-        id: 'coupon_3',
-        titleKo: '$142 이상 구매 시 $15 즉시 할인',
-        titleEn: '$15 OFF on orders over $142',
-        code: 'GCAP15',
-        badge: month === 11 ? '광군제특가' : '슈퍼세일',
-        badgeEn: month === 11 ? '11.11 Mega' : 'Super Deal',
-        descKo: '장바구니 결제 단계에서 프로모션 코드 입력',
-        descEn: 'Enter promo code at checkout'
-      },
-      {
-        id: 'coupon_4',
-        titleKo: '$359 이상 구매 시 $36 즉시 할인',
-        titleEn: '$36 OFF on orders over $359',
-        code: 'GCAP36',
-        badge: month === 11 ? '역대급할인' : '메가할인',
-        badgeEn: month === 11 ? 'All-Time Low' : 'Mega Deal',
-        descKo: '고가 전자기기/가전 주문 시 최대 할인',
-        descEn: 'Maximum savings on high-value orders'
-      }
-    ];
-  }
+  // 2. 프로모션 코드 및 핫딜 보존 (임의의 가짜/만료 코드 생성 배제, 실제 데이터 100% 무손실 보존)
+  const updatedCoupons = Array.isArray(currentData.coupons) ? currentData.coupons : [];
 
   // 3. 공식 쿠폰팩 배너 (사용자 제휴 링크 보존)
   const updatedCouponCenter = currentData.couponCenter || {

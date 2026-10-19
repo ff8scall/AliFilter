@@ -16,48 +16,7 @@
     "btnEn": "View Deals",
     "link": "https://s.click.aliexpress.com/e/_c3OgBvzx"
   },
-  "coupons": [
-    {
-      "id": "coupon_1",
-      "titleKo": "$34 이상 구매 시 $4 즉시 할인",
-      "titleEn": "$4 OFF on orders over $34",
-      "code": "GCAP04",
-      "badge": "10월특가",
-      "badgeEn": "October Deals",
-      "descKo": "초이스 및 알리 글로벌 직구 적용 (선착순 마감)",
-      "descEn": "Applicable to Choice & Global items (Subject to quota)"
-    },
-    {
-      "id": "coupon_2",
-      "titleKo": "$76 이상 구매 시 $9 즉시 할인",
-      "titleEn": "$9 OFF on orders over $76",
-      "code": "GCAP09",
-      "badge": "인기",
-      "badgeEn": "Popular",
-      "descKo": "가전/디지털/캠핑 카테고리 강력 추천",
-      "descEn": "Great for Electronics & Outdoor"
-    },
-    {
-      "id": "coupon_3",
-      "titleKo": "$142 이상 구매 시 $15 즉시 할인",
-      "titleEn": "$15 OFF on orders over $142",
-      "code": "GCAP15",
-      "badge": "슈퍼세일",
-      "badgeEn": "Super Deal",
-      "descKo": "장바구니 결제 단계에서 프로모션 코드 입력",
-      "descEn": "Enter promo code at checkout"
-    },
-    {
-      "id": "coupon_4",
-      "titleKo": "$359 이상 구매 시 $36 즉시 할인",
-      "titleEn": "$36 OFF on orders over $359",
-      "code": "GCAP36",
-      "badge": "메가할인",
-      "badgeEn": "Mega Deal",
-      "descKo": "고가 전자기기/가전 주문 시 최대 할인",
-      "descEn": "Maximum savings on high-value orders"
-    }
-  ],
+  "coupons": [],
   "hotdeals": [
     {
       "id": "deal_1",
@@ -71,7 +30,7 @@
       "discount": "49% OFF",
       "rating": "4.9",
       "orders": "24,000+",
-      "link": "https://s.click.aliexpress.com/e/_c3OgBvzx"
+      "link": "https://ko.aliexpress.com/w/wholesale-baseus-65w-gan.html"
     },
     {
       "id": "deal_2",
@@ -85,7 +44,7 @@
       "discount": "52% OFF",
       "rating": "4.9",
       "orders": "45,000+",
-      "link": "https://s.click.aliexpress.com/e/_c3OgBvzx"
+      "link": "https://ko.aliexpress.com/w/wholesale-essager-100w-cable.html"
     },
     {
       "id": "deal_3",
@@ -99,7 +58,7 @@
       "discount": "48% OFF",
       "rating": "4.8",
       "orders": "18,500+",
-      "link": "https://s.click.aliexpress.com/e/_c3OgBvzx"
+      "link": "https://ko.aliexpress.com/w/wholesale-ugreen-silent-mouse.html"
     },
     {
       "id": "deal_4",
@@ -113,7 +72,7 @@
       "discount": "41% OFF",
       "rating": "4.9",
       "orders": "12,000+",
-      "link": "https://s.click.aliexpress.com/e/_c3OgBvzx"
+      "link": "https://ko.aliexpress.com/w/wholesale-aula-f75.html"
     },
     {
       "id": "deal_5",
@@ -127,7 +86,7 @@
       "discount": "46% OFF",
       "rating": "4.9",
       "orders": "35,000+",
-      "link": "https://s.click.aliexpress.com/e/_c3OgBvzx"
+      "link": "https://ko.aliexpress.com/w/wholesale-anker-soundcore-p20i.html"
     },
     {
       "id": "deal_6",
@@ -141,7 +100,7 @@
       "discount": "50% OFF",
       "rating": "4.8",
       "orders": "62,000+",
-      "link": "https://s.click.aliexpress.com/e/_c3OgBvzx"
+      "link": "https://ko.aliexpress.com/w/wholesale-qcy-t13-anc.html"
     },
     {
       "id": "deal_7",
@@ -155,7 +114,7 @@
       "discount": "45% OFF",
       "rating": "4.9",
       "orders": "19,000+",
-      "link": "https://s.click.aliexpress.com/e/_c3OgBvzx"
+      "link": "https://ko.aliexpress.com/w/wholesale-baseus-a2-pro.html"
     },
     {
       "id": "deal_8",
@@ -169,7 +128,7 @@
       "discount": "47% OFF",
       "rating": "4.8",
       "orders": "28,000+",
-      "link": "https://s.click.aliexpress.com/e/_c3OgBvzx"
+      "link": "https://ko.aliexpress.com/w/wholesale-portable-tire-inflator.html"
     }
   ]
 }
